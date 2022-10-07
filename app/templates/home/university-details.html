@@ -1,0 +1,105 @@
+{% extends 'base.html' %} {% load static %} {% block css %}
+<style>
+    .card h5 .btn {
+        color: #282828;
+        background: #78AAD4;
+    }
+    
+    .list_style.circle li ul li::before {
+        height: 10px;
+        width: 10px;
+        line-height: 10px;
+        font-size: 9px;
+        margin: 4px;
+    }
+    
+    .uni-logo {
+        width: 100px;
+        height: 100%;
+        max-height: 100px;
+        object-fit: contain;
+    }
+</style>
+{% endblock css %} {% block content %} {% if messages %} {% for message in messages %}
+<div class="alert alert-info text-center">
+    {{ message }}
+</div>
+{% endfor %} {% endif %}
+<!-- {% include "home/partials/banner.html" %} -->
+<section class="pb-5" style="min-height: 80vh; background-color: #f4f4f4;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 wow fadeInRight"><br>
+                <div class="card mb-12 rounded">
+                    <div class="p-3">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="d-flex align-items-center">
+                                    <img src="{{content.details.logoURL}}" class="uni-logo me-3 img-fluid h-24 w-auto p-1">
+                                    <div class="ps-0 ps-md-2">
+                                        <h3 class="font-weight-bold">
+                                            {{content.details.name}}
+                                        </h3>
+                                        <div class="mt-3">
+                                            <a href="{{content.details.url}}" class="btn btn-secondary btn-sm" target="_blank">
+                                                Visit University Website
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4"></div>
+                            </div>
+                        </div>
+                        <div class="row py-3 mb-8">
+                            <div class="col-md-12 small lh-loose">
+                                <div class="alert alert-danger">
+                                    <h5 class="text-danger mb-4">Important Note:</h5>
+                                    {{content.details.imp_note | safe }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="px-5">
+                            <hr class="my-12">
+                        </div>
+                        <div class="row px-0 px-md-3">
+                            <div>
+                                <h4 class="mb-6 text-muted">Programme(s) Information</h4>
+                                <div class="table-responsive table-eligibility">
+                                    <table class="table table-bordered">
+                                        <tbody>
+                                            <tr>
+                                                <th>Degree</th>
+                                                <th>Programme/ Course offered</th>
+                                                <th>Domain/ General/ Optional Languages mapped to the Programmes</th>
+                                                <th>Eligibility for the programme</th>
+                                                <th>Remarks</th>
+                                            </tr>
+                                            {% for p in content.details.programmes_information.all %}
+                                            <tr>
+                                                <td>
+                                                    <div id="">{{p.degree}}</div>
+                                                </td>
+                                                <td>{{p.programme_course}}</td>
+                                                <td>
+                                                    {% for l in p.domain_general_languages.all %}
+                                                    {{l.title|capfirst}}
+                                                    {% endfor %}
+                                                </td>
+                                                <td>
+                                                    <p>{{p.eligibility}}</p>
+                                                </td>
+                                                <td><p>{{p.remark}}</p></td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

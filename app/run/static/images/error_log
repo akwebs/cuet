@@ -1,0 +1,4 @@
+[03-Jun-2021 12:59:27 UTC] PHP Warning:  include_once(constant.php): failed to open stream: No such file or directory in /home2/zaplearn/iasfoundationacademy.com/images/our-team.php on line 2
+[03-Jun-2021 12:59:27 UTC] PHP Warning:  include_once(): Failed opening 'constant.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/zaplearn/iasfoundationacademy.com/images/our-team.php on line 2
+[03-Jun-2021 12:59:27 UTC] PHP Warning:  require_once(inc/head_file_include.php): failed to open stream: No such file or directory in /home2/zaplearn/iasfoundationacademy.com/images/our-team.php on line 13
+[03-Jun-2021 12:59:27 UTC] PHP Fatal error:  require_once(): Failed opening required 'inc/head_file_include.php' (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home2/zaplearn/iasfoundationacademy.com/images/our-team.php on line 13

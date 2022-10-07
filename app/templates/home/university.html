@@ -1,0 +1,201 @@
+{% extends 'base.html' %} {% load static %} {% block css %}
+<style>
+    @media screen and (max-width: 554px){
+        .panel-body>.row{
+            flex-direction: column-reverse;
+        }
+    }
+    .card h5 .btn {
+        color: #282828;
+        background: #78AAD4;
+    }
+    
+    h5.card-title {
+        line-height: 16px;
+    }
+    tr.active{
+        color: #212529;
+        background-color: rgba(0, 0, 0, .075);
+    }
+    .list_style.circle li ul li::before {
+        height: 10px;
+        width: 10px;
+        line-height: 10px;
+        font-size: 9px;
+        margin: 4px;
+    }
+    
+    .uni-card {
+        -webkit-tap-highlight-color: transparent;
+        background-color: transparent;
+        transition-duration: 300ms;
+        transition-property: left, top;
+        transition-timing-function: ease-in-out;
+    }
+    
+    .uni-card:hover {
+        background-color: rgba(40, 40, 40, 0.1);
+    }
+    
+    .logo-box {
+        border-radius: 100%;
+        width: 100px;
+        height: 100px;
+        background: #FFF;
+        margin: 0 auto;
+        padding: 10px;
+    }
+    
+    .uni-logo {
+        width: 100%;
+        max-width: 88px;
+        object-fit: cover;
+    }
+    .tab-btn {
+        padding: 14px 30px 14px 70px;
+        /* width: 24%; */
+        font-weight: bold;
+        text-align: left;
+        position: relative;
+        overflow: hidden;
+        background-color: #fff;
+        word-wrap: break-word;
+        white-space: normal;
+        transition: all 0.5s ease 0s;
+    }
+    .tab-btn.active {
+        color: #282828 !important;
+        background: #78AAD4 !important;
+    }
+    .tab-btn.active:hover{
+        color: #282828 !important;
+    }
+    .tab-btn.active:hover:before {
+        background: rgba(0, 0, 0, 0.1) !important;
+    }
+    .tab-btn:before {
+        content: "";
+        width: 55px;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.1);
+        position: absolute;
+        top: 0;
+        left: -13px;
+        transform: skewX(-25deg);
+        transition: all 0.5s ease 0s;
+    }
+    .tab-btn::after {
+        content: "\f047";
+        font-family: FontAwesome;
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        color: #fff;
+        transform: translateY(-50%);
+    }
+    .tab-btn:hover {
+        color: orange !important;
+    }
+    .tab-btn:hover:before {
+        background: #7eab3e;
+    }
+    .tab-btn:hover:after {
+        color: #fff;
+    }
+</style>
+{% endblock %} {% block content %} {% if messages %} {% for message in messages %}
+<div class="alert alert-info text-center">
+    {{ message }}
+</div>
+{% endfor %} {% endif %}
+<!-- {% include "home/partials/banner.html" %} -->
+<section class="pb-5" style=" min-height: 80vh; background-color: #f4f4f4;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 wow fadeInRight"><br>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="blue font-weight-bold mb-4 panel-title text-left">Participating Universities</h2>
+                    </div>
+                    <nav class="rounded">
+                        <div class="nav nav-tabs justify-content-between" id="nav-tab" role="tablist">
+                            {% for ut in content.university %}
+                            <a class="nav-link tab-btn d-flex col-md-3 col-sm-6 {% if forloop.first %}active{% endif %}" id="nav-{{ut.slug}}-tab" data-toggle="tab" data-target="#nav-{{ut.slug}}" type="button" role="tab" aria-controls="nav-{{ut.slug}}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">
+                                {{ut.title}} <span class="ml-auto">{{ut.universities.all|length}}</span>
+                            </a> {% endfor %}
+                        </div>
+                    </nav>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="tab-content" id="nav-tabContent">
+                                {% for ut in content.university %}
+                                <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="nav-{{ut.slug}}" role="tabpanel" aria-labelledby="nav-{{ut.slug}}-tab">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-4 mt-4">
+                                                <div class="mb-3 font-weight-bold">
+                                                    <h3>List View</h3>
+                                                </div>
+                                                <div class="bg-white">
+                                                    <div class="table-responsive mt-6 mt-md-0">
+                                                        <table class="table mb-0 table-bordered table-hover">
+                                                            <tbody>
+                                                                {% for u in ut.universities.all %}
+                                                                <tr>
+                                                                    <td>
+                                                                        <a href="{% url 'admin_section:university_detail' u.slug %}" target="_blank">
+                                                                            {{forloop.counter}}. {{u.name|lower|title}} </a>
+                                                                    </td>
+                                                                </tr>
+                                                                {% endfor %}
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8 mt-4">
+                                                <div class="row">
+                                                    {% for u in ut.universities.all %}
+                                                    <div class="col-md-4 pb-2">
+                                                        <a href="{% url 'admin_section:university_detail' u.slug %}">
+                                                            <div class="card h-100" title="{{u.name}}">
+                                                                <div class="card-body text-center py-1 px-3">
+                                                                    <div class="inner d-flex justify-content-center small">
+                                                                        <img src="{{u.logoURL}}" alt="{{u.image_alt}}" title="{{u.name}}" class="uni-logo h-12 mt-2">
+                                                                    </div>
+                                                                    <div class="uni-text mt-2" style="font-weight: 500; font-size: 13px">
+                                                                        <span class="uni-name">{{u.name}}</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} {% block scripts %}
+<script>
+    //on page ready get nav-tab-2 and add click event
+    $(document).ready(function() {
+        $('#nav-tab-2 tr').click(function() {
+            //add active class to selected row
+            $('#nav-tab-2 tr').removeClass('active');
+            $(this).addClass('active');
+            var target = $(this).data('target');
+            $('#nav-tab a[data-target="' + target + '"]').tab('show');
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,29 @@
+.bg-dark-blue {
+    background-color: #2F3D57!important;
+    color: white!important;
+}
+
+.bg-blue1 {
+    background-color: #2E3D57;
+    color: white;
+}
+
+.bg-lightBlue {
+    background-color: #78AAD4;
+}
+
+.bg-lightBlue1 {
+    background-color: #95b8cc;
+}
+
+.bg-lightBlue2 {
+    background-color: #ebf5f7;
+}
+
+.text-blue1 {
+    color: #2E3D57;
+}
+
+.myborder {
+    border: 5px solid #2F3D57!important
+}

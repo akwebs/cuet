@@ -1,0 +1,170 @@
+{% extends 'base.html' %} {% load static %} {% block content %} {% if messages %} {% for message in messages %}
+<div class="alert alert-info text-center">
+    {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+{% include "home/partials/banner.html" %}
+{% include "home/partials/about.html" %}
+{% include "home/partials/why.html" %}
+<section class="pb-5" style="background-color:#ddd">
+    <div class="bg-dark-blue py-0">
+        <div class="container">
+            <h1 class="text-center text-white heading line"> Courses Offered </h1>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="row pt-1">
+            {% for cat in categories %}
+            {% if cat.category_status %}
+            {% if cat.id == 1 or cat.id == 3 %}
+            <div class="col-md-6">
+                <h2 class="pl-2 text-left left-border"> {{cat.category_name}}</h2>
+                {% for sub in cat.subcategory.all %}
+                {% if sub.subcategory_status %}
+                <h3 class="bg-dark-blue myheading"> <span> {{sub.subcategory_name|title}} </span> </h3> <br>
+                <div class="row">
+                    {% for course in sub.course_subcategory.all %}
+                    {% if course.course_status %}
+                    <div class="col-md-6">
+                        <div class="our-team_2 wow fadeInLeft">
+                            <div class="pic color1">
+                                <img src="{% static 'images/course/course-bg.png' %}">
+                                <div class="stack">
+                                    <span class="course-name">{{course.course_name|upper}}</span>
+                                    <span class="course-span">for</span>
+                                    <span class="course-for">Something Here</span>
+                                </div>
+                                <a href="{% url 'course:course' course.slug  %}">
+                                    <div class="over-layer" style="border-radius:15px">
+                                        <ul class="social-links">
+                                            <h1 style="line-height:100%; font-size:150%; color:white;"> <br><br> Click for Details
+                                            </h1>
+                                        </ul>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="col-md-12">
+                        <h3 class="text-center"> No Courses Available </h3>
+                    </div>
+                    {% endif %}
+                    {% empty %}
+                    <div class="col-md-12">
+                        <h3 class="text-center"> No Courses Available </h3>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% for cat in categories %}
+        {% if cat.category_status %}
+        {% if cat.id == 2 %}
+        <div class="row pt-1">
+            <div class="col-md-12">
+                <h2 class="pl-2 text-left left-border"> {{cat.category_name}}</h2>
+                {% for sub in cat.subcategory.all %}
+                {% if sub.subcategory_status %}
+                <h3 class="bg-dark-blue myheading"> <span> Direct Online Courses </span> </h3> <br>
+                <div class="row">
+                    {% for course in sub.course_subcategory.all %}
+                    {% if course.course_status %}
+                    <div class="col-md-3">
+                        <div class="our-team_2 wow fadeInLeft">
+                            <div class="pic color1">
+                                <img src="{% static 'images/course/course-bg.png' %}">
+                                <div class="stack">
+                                    <span class="course-name">{{course.course_name|upper}}</span>
+                                    <span class="course-span">for</span>
+                                    <span class="course-for">Prelims & Mains</span>
+                                </div>
+                                <a href="{% url 'course:course' course.slug  %}">
+                                    <div class="over-layer" style="border-radius:15px">
+                                        <ul class="social-links">
+                                            <h1 style="line-height:100%; font-size:150%; color:white;"> <br><br> Click for Details
+                                            </h1>
+                                        </ul>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="col-md-12">
+                        <h3 class="text-center"> No Courses Available </h3>
+                    </div>
+                    {% endif %}
+                    {% empty %}
+                    <div class="col-md-12">
+                        <h3 class="text-center"> No Courses Available </h3>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+    </div>
+</section>
+<section class="bg-lightBlue1 pb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 wow fadeInRight"> <br>
+                <h1> Salient features </h1>
+                <ul class="list_style circle" style="font-size:106%; line-height:180%; text-align:justify; font-weight: 800px">
+                    <li>Live Classes and Doubt Solving Sessions</li>
+                    <li>CBT based Mock Test for Practice</li>
+                    <li>Text Books with theory notes and practice exercises</li>
+                    <li>Concept explaining Video Lectures</li>
+                    <li>Courses available in Online and Offline mode</li>
+                    <li>Course curriculum designed by field experts </li>
+                    <li>Qualified, experienced & dedicated faculty team</li>
+                    <li>Courses helps to score high percentage in 12th Board Exams</li>
+                </ul>
+            </div>
+            <div class="col-lg-6 offset-md-1 wow fadeInLeft">
+                <style>
+                    .utube {
+                        border: none;
+                        max-height: 300px;
+                        width: 100%;
+                        padding: auto;
+                        margin: auto;
+                        text-align: center;
+                    }
+                    @media (min-width:900px) {
+                        .utube {
+                            height: 100%;
+                            text-align: center;
+                        }
+                    }
+                    @media (max-width:600px) {
+                        .utube {
+                            height: 100%;
+                            width: 100%;
+                            padding-left: 0;
+                            text-align: center;
+                        }
+                    }
+                </style>
+                <div class="">
+                    <h3 class="pt-sm-n4 pt-md-4 mt-sm-n4" style="font-weight: 200px;  font-family:helvetica"><span style=" color:black"> <i> Eminent Faculty Member </i> </span></h3>
+                </div>
+                <iframe class="utube" class="" src="https://www.youtube.com/embed/sCzj6QYi4NE" style="min-width:100%; border-radius:7px;">
+                </iframe>
+            </div>
+        </div>
+    </div>
+    <!--[endif]-->
+</section>
+{% endblock %}

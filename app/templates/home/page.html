@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-info text-center">
+  {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+{% include "home/partials/banner.html" %}
+<section class="bg-lightBlue1 pb-5">
+    {% if page %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 wow fadeInRight"><br>
+                {{page.content | safe}}
+            </div>
+        </div>
+    </div>
+    <!--[endif]-->
+    {% endif %}
+</section>
+{% endblock %}
+{% block script %}
+
+{% endblock script %}

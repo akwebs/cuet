@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<style>
+    .center-line {
+   width: 100%; 
+   text-align: center; 
+   border-bottom: 1px solid #000; 
+   line-height: 0.05em;
+   margin: 10px 0 20px; 
+} 
+
+.center-line span { 
+
+    background:#d1f8ff; 
+    padding:0 30px; 
+    border-radius: 5px;
+    border:1px solid black;
+}
+</style>
+{% endblock css %}
+{% block content %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-info text-center">
+    {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+{% include "home/partials/banner.html" %}
+<section class="wrapper py-2" style="background-color:white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 wow fadeInLeft text-md-left  text-sm-center m-auto ">
+                <img style="width:100%" src="{% static 'images/about-ias/iaspic1.png' %}" class="rounded text-md-left  text-sm-center m-auto"alt="">
+            </div>
+            <div class="col-md-7 wow fadeInRight">
+                <h2 class="center-line text-center pt-3 wow fadeInRight"> <span class="bg-dark-blue py-1"> CUET (UG) 2022 Important Dates </span> </h2>
+                <table class="table my-5">
+                    <thead>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th style="width:30%">Notification</th>
+                            <td> March </td>
+                        </tr>
+                        <tr>
+                            <th> Application Submission </th>
+                            <td> April </td>
+                        </tr>
+                        <tr>
+                            <th> Admit Card </th>
+                            <td> May </td>
+                        </tr>
+                        <tr>
+                            <th> Exam Date </th>
+                            <td> June - July </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"> Results </th>
+                            <td> August </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"> Universities counselling & Admission </th>
+                            <td> August </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- <div class="col-md-7  wow fadeInRight">
+                <img src="{% static 'images/about-ias/announcement.PNG' %}" alt="" style="width:100%">
+            </div> -->
+        </div>
+    </div>
+</section>
+<section class="hero-image11 wrapper py-4" style="background-color:#ddd">
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-6 wow fadeInRight">
+                <h2 class="center-line text-center pt-3 wow fadeInRight"> <span class="bg-dark-blue py-1"> CUET (UG) Highlights </span> </h2>
+                <table class="table my-5">
+                    <thead>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th style="width:30%">Name of the exam-</th>
+                            <td>Common University Entrance Test – CUET (UG)</td>
+                        </tr>
+                        <tr>
+                            <th> Conducting Authority </th>
+                            <td> National Testing Agency (NTA) </td>
+                        </tr>
+                        <tr>
+                            <th> Mode of Exam </th>
+                            <td> Computer Based Test (CBT) Mode </td>
+                        </tr>
+                        <tr>
+                            <th> Types of question </th>
+                            <td> Multiple Choice Objective type </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"> Frequency of Exam </th>
+                            <td> Once in a Year </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"> No. of students appeared </th>
+                            <td> 14.90 lac in CUET (UG) – 2022 </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"> No. of participating Universities </th>
+                            <td> 100 </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"> No. of Approx. seats </th>
+                            <td> 1 Lac </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6 wow fadeInDown text-md-right text-sm-center ">
+                <img src="{% static 'images/about-ias/img5.png' %}" style="width:92%" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

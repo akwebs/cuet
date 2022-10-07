@@ -1,0 +1,53 @@
+{% load static %}
+<div class="bg-dark-blue" style="border-bottom:0px solid rgba(255,255,255,.8);" id="newHeader">
+    <div class="container">
+        {% if h %}
+        <nav class="navbar navbar-sticky navbar-expand-lg navbar-light bg-dark-blue text-white p-0 " id="navbar" style="z-index:999">
+            <img class="logo-img" src="{{ h.logo.url}}" alt="{{ h.logo_alt }}">
+            <h1 class="text-white" style="font-size:140%"> &nbsp; CUET Sarthi</h1>
+            <!--  <div class="container">-->
+            <button class="navbar-toggler border-none my-auto" style="border:0px; line-height:100%;" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown" style="z-index:999">
+                <ul class="nav navbar-nav ml-auto" style="font-size:115%">
+                    <li class="nav-item dropdown">
+                        <a href="{% url 'home:home' %}" class="nav-link dropdown-toggle">
+                            <span class="data-hover" data-hover="Home">Home</span>
+                        </a>
+                    </li>
+                    {% for a in m %}
+                    {% if a.menu.link_status %}
+                    <li class="nav-item dropdown" style="margin-left:3px;">
+                        <a href="{{a.menu.link_url}}" class="nav-link dropdown-toggle">
+                            <span class="data-hover" data-hover="{{a.menu.link_name}}"> {{a.menu.link_name}} </span>
+                        </a>
+                        {% if a.sub_links %}
+                        <div class="row" style="overflow:hidden;">
+                            <ul class="dropdown-menu mega-menu mega-menu-one">
+                                <h3 class="pl-2 pt-2 pb-0 text-blue1 font-weight-bolder"></h3>
+                                <li>
+                                    {% for c in a.sub_links %}
+                                    <a href="{{c.link_url}}" class="nav-link dropdown-toggle pt-0 pl-3">
+                                        {{c.link_name}}
+                                        <!-- - <span class="font-weight-bolder"> EDGE </span> -->
+                                    </a>
+                                    {% endfor %}
+                                </li>
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                    <li class="nav-item ml-3">
+                        <a href="{{h.cta_button_link}}" style="background-color:#5c6c88" class="nav-link dropdown-toggle text-white"> {{h.cta_button_text}}
+                            <span class="{{h.cta_button_icon}}"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        {% endif %}
+    </div>
+</div>

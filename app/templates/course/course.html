@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<style>
+    h2 {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #000;
+    line-height: 0.05em;
+    margin: 10px 0 20px;
+}
+
+h2 span {
+    background:#d1f8ff;
+    padding:0 10px;
+    border-radius: 5px;
+    border:1px solid black;
+}
+</style>
+{% endblock %}
+{% block content %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-info text-center">
+    {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+{% include "course/partials/hero.html" %}
+<section class="content">
+    <div class="container">
+        <div class="row sub_content">
+            <div class="col-md-7">
+                <div
+                    style="background-color:#2f3d57; color:white; padding:10px 40px 40px 40px; border-radius:0 0 15px 15px; ">
+                    <br>
+                    <h3 class="text-info" style="font-size:160%"> {{course.course_name|upper}} - {{course.course_code}} <br>
+                        <small>{{course.course_category.category_name}}</small>
+                    </h3> <br>
+                    <h3 class="text-white mb-1"> Course Description : </h3>
+                    <p class="lead text-justify wow fadeInLeft mb-2">
+                        {{course.course_description|safe}}
+                    </p>
+                    <h3 class="text-white">Course Content : </h3>
+                    <div class="row course-plannar">
+                        <div class="col-md-6">
+                            <div style="margin-top:2px" class="button btn-light text-center btn-lg h2"> Text Booklet
+                                <br> <span style="color:var(--blue-dark); font-size:130%"> {{course.text_booklets}} </span> </div>
+                        </div>
+                        <div style="margin-top:2px" class="col-md-6">
+                            <div class="button btn-light text-center btn-lg h2"> Video Lectures <br> <span
+                                    style="color:var(--blue-dark); font-size:130%"> {{course.videos_lectures}} Videos </span> </div>
+                        </div>
+                        <div style="margin-top:2px" class="col-md-6">
+                            <div class="button btn-light text-center btn-lg h2"> Course Duration <br> <span
+                                    style="color:var(--blue-dark); font-size:130%"> {{course.course_duration}} {{course.course_duration_unit|title}} </span> </div>
+                        </div>
+                        <div style="margin-top:2px" class="col-md-6">
+                            <div class="button btn-light text-center btn-lg  h2"> Total Test <br> <span
+                                    style="color:var(--blue-dark); font-size:130%"> {{course.total_tests}} </span> </div>
+                        </div>
+                    </div><br>
+                    <h3 class="text-white mb-1"> Paper Pattern : </h3>
+                    <p class="lead text-justify wow fadeInLeft mb-2">
+                        {{course.paper_pattern|safe}}
+                    </p>
+                    <div class="row course-plannar">
+                        <div class="col-md-6">
+                            <div style="margin-top:2px" class="button btn-light text-center btn-lg h2"> Duration
+                                <br> <span style="color:var(--blue-dark); font-size:130%"> {{course.duration}} min. </span> </div>
+                        </div>
+                        <div style="margin-top:2px" class="col-md-6">
+                            <div class="button btn-light text-center btn-lg h2"> Total Marks <br> <span
+                                    style="color:var(--blue-dark); font-size:130%"> {{course.total_marks}} </span> </div>
+                        </div>
+                        <div style="margin-top:2px" class="col-md-6">
+                            <div class="button btn-light text-center btn-lg h2"> Negative Marking <br> <span
+                                    style="color:var(--blue-dark); font-size:130%"> {{course.negative_marking}} </span> </div>
+                        </div>
+                        <!--  -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div style="font-size:18px;" class="container">
+                    <span class="plannar" style="padding:20px">
+                        <b>
+                            <strong>
+                                <h2>
+                                    <span class="bg-dark-blue">Subjects</span>
+                                </h2>
+                            </strong>
+                        </b>
+                    </span>
+                    <div class="row align-content-stretch align-items-stretch">
+                        {% for c in courses %}
+                        {% if c.course_status %}
+                        <div class="col-md-6">
+                            <a href="{% url 'course:course' c.slug  %}">
+                                <div class="button btn-info btn-lg text-center text-white h2" style="margin-top:2px">
+                                    {{c.course_name|upper}}
+                                </div>
+                            </a>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                        <a href="">
+                            <img src="{% static 'images/course/aspire-course-prise.png' %}" alt="subject" width="100%" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block script %}
+{% endblock script %}

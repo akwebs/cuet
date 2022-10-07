@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{content.title}} | {% endblock title %}
+{% block css %}
+    <style>
+        img.card-img-top {
+            max-height: 230px;
+            object-fit: cover;
+            object-position: top;
+        }
+        span.cat{
+            font-size: smaller;
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 0 10px;
+            border-top-left-radius: 5px;
+        }
+    </style>
+{% endblock css %}
+{% block content %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-info text-center">
+    {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+{% include "home/partials/banner.html" %}
+<section class="pb-5" style="background-color:#ddd; min-height: 80vh;">
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 wow fadeInRight"><br>
+            <div class="row">
+            {% for news in content.news %}
+                <div class="{% if forloop.counter == 1 %}col-md-12{% else %}col-md-6{% endif %}">
+                    <div class="card mb-4 box-shadow">
+                        <a href="{% url 'news:news_category' news.category.slug %}" title="{{ news.category.title }}">
+                            <span class="cat bg-dark-blue">{{ news.category.title }}</span>
+                        </a>
+                        <div class="card-body">
+                            <a href="{% url 'news:news_detail' news.slug %}" title="{{ news.title }}">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h3 class="card-title">{{ news.title }}</h3>
+                                </div>
+                            </a>
+                            <p class="card-text">{{ news.body|safe|truncatechars:100 }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href="{% url 'news:news_detail' news.slug %}" class="btn btn-normal btn-sm" title="{{ news.title }}">Read More</a>
+                                </div>
+                                <small class="text-muted">{{ news.posted }}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+        <div class="bg-white col-md-4 h-100 mt-4 pb-3 rounded-top">
+            <div class="mb-3 font-weight-bold">
+                <h3>Categories</h3>
+            </div>
+            <div class="bg-white">
+                <div class="table-responsive mt-6 mt-md-0">
+                    <table class="table mb-0 table-bordered table-hover">
+                        <tbody>
+                            {% for c in content.categories %}
+                            <tr>
+                                <td>
+                                    <a href="{% url 'news:news_category' c.slug %}" class="d-flex align-items-center text-blue1 justify-content-between" title="{{c.title|lower|title}}">
+                                        {{forloop.counter}}. {{c.title|lower|title}} <span class="badge btn-normal">{{c.news_category.all.count}}</span>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="my-3 font-weight-bold">
+                <h3>Cloud Tags</h3>
+            </div>
+            {% for tag in content.categories %}
+                <a href="{% url 'news:news_category' tag.slug %}" class="badge btn-normal" title="{{ tag.title }}">{{ tag.title }}</a>
+            {% endfor %}
+            <!-- <div class="bg-white">
+                <div class="table-responsive mt-6 mt-md-0">
+                    <table class="table mb-0 table-bordered table-hover">
+                        <tbody>
+                            {% for c in content.categories %}
+                            <tr>
+                                <td>
+                                    <a href="{% url 'news:news_category' c.slug %}" class="d-flex align-items-center justify-content-between">
+                                        {{forloop.counter}}. {{c.title|lower|title}} <span class="badge badge-primary">{{c.news_category.all.count}}</span>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>
+</section>
+{% endblock %}

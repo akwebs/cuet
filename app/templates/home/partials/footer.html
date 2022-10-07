@@ -1,0 +1,48 @@
+{% load static %}
+<footer class="footer" style="background-color:var(--dark-blue-color)">
+    <div class="container-fluid">
+        {% if f %}
+        <div class="row align-items-center text-center main">
+            <div class="col-md-3 text-sm-center pl-0 my-last-order" style="opacity:0.7"> {{f.copyright}}
+            </div>
+            <div class="col-md-6 lead p-0 my-0 text-center" style="letter-spacing:1px;">
+                <style>
+                    .myblock {
+                        display: inline-block;
+                    }
+                    @media screen and (max-width:500px) {
+                        .myblock {
+                            display: block !important;
+                        }
+                        .disnone {
+                            display: none;
+                        }
+                    }
+                </style>
+                <div class="font-weight-bolder text-size-adjust-contact">
+                    <i class="fa fa-envelope"></i> <span class="disnone"> &nbsp; </span> {{f.email}}
+                    <span class="disnone"> &nbsp; </span> <span class="my-d-sm-none"> | </span>
+                    <span class="myblock"> <span class="disnone"> &nbsp; </span> <i class="fa fa-phone"> </i> <span class="disnone"> &nbsp; </span> {{f.phone}} </span>
+                </div>
+            </div>
+            <div class="col-md-3 text-right d-flex ">
+                <style>
+                    .footbot_social::-webkit-scrollbar {
+                        display: none;
+                    }
+                </style>
+                <ul class="widget_social list-group list-group-horizontal footbot_social " style="overflow:auto;">
+                    <li class="px-1"><a class="fb" href="{{f.facebook}}" data-placement="top" data-toggle="tooltip" title="Facebook"><i class="fa fa-facebook">
+                            </i></a></li>
+                    <li class="px-1"><a class="twtr" href="{{f.twitter}}" data-placement="top" data-toggle="tooltip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                    <li class="px-1"><a class="linkedin" href="{{f.linkedin}}" data-placement="top" data-toggle="tooltip" title="linkedin"><i class="fa fa-linkedin"></i></a></li>
+                    <li class="px-1"><a class="instagram" href="{{f.instagram}}" data-placement="top" data-toggle="<too></too>ltip" title="Instagram"><i
+                                class="fa fa-instagram"></i></a></li>
+                    <li class="px-1"><a class="youtube" href="{{f.youtube}}" data-placement="top" data-toggle="<too></too>ltip" title="YouTube"><i
+                                class="fa fa-youtube"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</footer>

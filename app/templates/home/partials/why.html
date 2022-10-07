@@ -1,0 +1,14 @@
+{% load static %} {% for sec in sections %} {% if sec.section_type == 'why_choose_us' %}
+<section class="wrapper section2 pb-5" style="background-color:white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-12" style="border-radius:2px;">
+                <div class="heading-line font-weight-bold text-center  wow fadeInLeft">
+                    <h1 class="text-left pt-3 d-flex"> {{sec.title|slice:":14"}} <small>{{sec.title|slice:"-30:"}}</small></h1>
+                </div>
+                <hr> {{sec.text|safe}}
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %} {% endfor %}

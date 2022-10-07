@@ -1,0 +1,17 @@
+{% load static %} {% for sec in sections %} {% if sec.section_type == 'about' %}
+<section class="wrapper section1 pb-5" style="background-color:#95b8cc">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-9" style="border-radius:2px;">
+                <div class="heading-line font-weight-bold text-center  wow fadeInLeft">
+                    <h1 class="text-left mt-4">{{sec.title}}</h1>
+                </div>
+                <hr> {{sec.text|safe}}
+            </div>
+            <div class="col-md-3 wow fadeInLeft">
+                <img class="img-fluid" src="{{sec.image.url}}" alt="{{sec.image_alt}}">
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %} {% endfor %}

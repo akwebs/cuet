@@ -1,0 +1,13 @@
+{% load static %}
+{% block css %}
+<style>
+
+    .hero-image{
+        background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{% static 'images/course/aim-course-cover.jpg' %}");
+        background-image: -o-linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{% static 'images/course/aim-course-cover.jpg' %}");
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{% static 'images/course/aim-course-cover.jpg' %}");
+    }
+</style>
+{% endblock %}
+<div style="border-bottom:8px solid #2f3d57;" class="hero-image">
+</div>
